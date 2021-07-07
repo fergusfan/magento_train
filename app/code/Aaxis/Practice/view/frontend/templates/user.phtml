@@ -1,0 +1,42 @@
+<form id="form-validate" class="form">
+    <?php
+    /** @var \Aaxis\Practice\Block\Index\User $block */
+
+    $user = $block->getUserInfoByEmail();
+    ?>
+    <fieldset class="fieldset" data-hasrequired="* Required Fields">
+        <legend class="legend"><span>Personal Information</span></legend>
+        <br/>
+        <?php if (!empty($user)) : ?>
+            <div class="field firstname required">
+                <label for="firstname" class="label">First Name</label>
+                <div class="control">
+                    <input type="text" name="firstname" id="firstname" value="<?php echo $user->getFirstName() ?>"
+                           title="First Name" class="required-entry input-text"/>
+                </div>
+            </div>
+            <div class="field lastname required">
+                <label for="lastname" class="label">Last Name</label>
+                <div class="control">
+                    <input type="text" name="lastname" id="lastname" value="<?php echo $user->getLastName() ?>"
+                           title="Last Name" class="required-entry input-text"/>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="field firstname required">
+                <label for="firstname" class="label">First Name</label>
+                <div class="control">
+                    <input type="text" name="firstname" id="firstname" value=""
+                           title="First Name" class="required-entry input-text"/>
+                </div>
+            </div>
+            <div class="field lastname required">
+                <label for="lastname" class="label">Last Name</label>
+                <div class="control">
+                    <input type="text" name="lastname" id="lastname" value=""
+                           title="Last Name" class="required-entry input-text"/>
+                </div>
+            </div>
+        <?php endif; ?>
+    </fieldset>
+</form>
