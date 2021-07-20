@@ -2,12 +2,14 @@
     <?php
     /** @var \Aaxis\Practice\Block\Index\User $block */
 
-    $user = $block->getUserInfoByEmail();
+    $email = null;
+    $user = $block->getUserInfoByEmail($email);
     ?>
     <fieldset class="fieldset" data-hasrequired="* Required Fields">
         <legend class="legend"><span>Personal Information</span></legend>
         <br/>
         <?php if (!empty($user)) : ?>
+            <?php  if($user[0]){echo $user;} ?>
             <div class="field firstname required">
                 <label for="firstname" class="label">First Name</label>
                 <div class="control">
@@ -19,6 +21,13 @@
                 <label for="lastname" class="label">Last Name</label>
                 <div class="control">
                     <input type="text" name="lastname" id="lastname" value="<?php echo $user->getLastName() ?>"
+                           title="Last Name" class="required-entry input-text"/>
+                </div>
+            </div>
+            <div class="field lastname required">
+                <label for="lastname" class="label">New Info</label>
+                <div class="control">
+                    <input type="text" name="newinfo" id="lastname" value="<?php echo $user->new ?>"
                            title="Last Name" class="required-entry input-text"/>
                 </div>
             </div>

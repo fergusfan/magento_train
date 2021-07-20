@@ -35,19 +35,22 @@ class User extends Template
         parent::__construct($context, $data);
     }
 
-    public function getUserInfoByEmail()
+    /**
+     * @param $email
+     *
+     * @return \Magento\Framework\DataObject|null
+     */
+    public function getUserInfoByEmail($email)
     {
-        $email = $this->_request->getParam('email');
-        if (empty($email)) {
-            return null;
-        }
+//        $email = $this->_request->getParam('email');
+//        if (empty($email)) {
+//            return null;
+//        }
         $collection = $this->userFactory->create()->getCollection();
         $collection->addFieldToFilter('email', ['eq' => $email])
             ->setPageSize(1);
         $user = $collection->getFirstItem();
-        if ($user) {
-            return $user;
-        } else {
+        if (!$user) {
             return null;
         }
         return $user;
